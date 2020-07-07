@@ -52,6 +52,12 @@ public class NotificationService {
 		JSONUtils.loadProperties(config);
 		appConfig = config;
 		accountKey = appConfig.get(NotificationEnum.fcm_account_key.name());
+    
+    Logger.info("NotificationService:initialize: sms config:: sms auth key: "+ appConfig.get(NotificationEnum.sms_auth_key.name())+
+      " sms default provider: "+appConfig.get(NotificationEnum.sms_default_sender.name()));
+    Logger.info("NotificationService:initialize: email config:: email-server: "+ appConfig.get(NotificationEnum.mail_server_from_email.name())+
+      " mail-username: "+appConfig.get(NotificationEnum.mail_server_username.name())+ " mail-password: "+appConfig.get(NotificationEnum.mail_server_password.name())+
+      " mail-host: "+appConfig.get(NotificationEnum.mail_server_host.name())+" mail-port: "+appConfig.get(NotificationEnum.mail_server_port.name()));
 		SMSConfig smsConfig = new SMSConfig(
 						appConfig.get(NotificationEnum.sms_auth_key.name()), appConfig.get(NotificationEnum.sms_default_sender.name()));
 		smsProvider = SMSFactory.getInstance("91SMS", smsConfig);
